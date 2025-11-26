@@ -4,9 +4,7 @@ public class Wordle {
     // Reads all words from dictionary filename into a String array.
     public static String[] readDictionary(String filename) {      
           In in = new In(filename);
-            String[] wordStrings = in.readAllStrings();
-            in.close();
-        
+            String[] wordStrings = in.readAllStrings();        
             return wordStrings;
         }
     
@@ -110,7 +108,6 @@ public class Wordle {
 
         // Prepare to read from the standart input 
         In inp = new In();
-
         int attempt = 0;
         boolean won = false;
 
@@ -144,8 +141,8 @@ public class Wordle {
         }
 
         if (!won) {
-             System.out.println("Sorry, you did not guess the word.");
-             System.out.println("The word was: " + secret);
+            System.out.println("Sorry, you did not guess the word.");
+            System.out.println("The secret word was: " + secret);
         }
 
     }
