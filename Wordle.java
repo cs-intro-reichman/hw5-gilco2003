@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 public class Wordle {
     
 
@@ -31,7 +29,7 @@ public class Wordle {
 		return false;
     }
         
-
+    //returns if the input is valid.
     public static boolean isValid(String s) {
             for(int i =0; i < s.length(); i++){
                 if(s.charAt(i) < 'A' || s.charAt(i) > 'Z')
@@ -117,11 +115,11 @@ public class Wordle {
         boolean won = false;
 
         while (attempt < MAX_ATTEMPTS && !won) {
-             System.out.print("Enter your guess (5-letter word): ");
+            System.out.print("Enter your guess (5-letter word): ");
             String guess =  inp.readLine();// ... read from the standrad input
             boolean valid = isValid(guess);
             // Loop until you read a valid guess
-            while (!isValid(guess)) {
+            while (!valid) {
                 System.out.print("Enter your guess (5-letter word): ");
                 guess = inp.readLine();// ... read from the standrad input
                 
@@ -131,14 +129,11 @@ public class Wordle {
                     valid = true;
                 }
             }
-
             // Store guess and compute feedback
             // ... use storeGuess and computeFeedback
             storeGuess(guess, guesses, attempt);
-
           // compute feedback
            computeFeedback(secret, guess, results[attempt]);
-
 
             // Print board
             printBoard(guesses, results, attempt);
@@ -156,9 +151,8 @@ public class Wordle {
         if (!won) {
              System.out.println("Sorry, you did not guess the word.");
              System.out.println("The word was: " + secret);
-
+             inp.close();
         }
 
-        inp.close();
     }
 }
