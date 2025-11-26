@@ -120,14 +120,10 @@ public class Wordle {
             boolean valid = isValid(guess);
             // Loop until you read a valid guess
             while (!valid) {
+               System.out.println("Invalid word. Please try again.");
                 System.out.print("Enter your guess (5-letter word): ");
-                guess = inp.readLine();// ... read from the standrad input
-                
-                if (!valid) {
-                    System.out.println("Invalid word. Please try again.");
-                } else {
-                    valid = true;
-                }
+                guess = inp.readLine();
+                valid = isValid(guess);
             }
             // Store guess and compute feedback
             // ... use storeGuess and computeFeedback
@@ -142,7 +138,6 @@ public class Wordle {
             if (isAllGreen(results[attempt])) {
                 System.out.println("Congratulations! You guessed the word in " + (attempt + 1) + " attempts.");
                 won = true;
-                inp.close();
             }
 
             attempt++;
@@ -151,7 +146,6 @@ public class Wordle {
         if (!won) {
              System.out.println("Sorry, you did not guess the word.");
              System.out.println("The word was: " + secret);
-             inp.close();
         }
 
     }
